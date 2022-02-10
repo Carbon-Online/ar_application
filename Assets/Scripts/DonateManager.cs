@@ -5,75 +5,58 @@ using UnityEngine;
 
 public class DonateManager : MonoBehaviour
 {
-    private ParticleSystem ps;
-    private ParticleSystem.MainModule psm;
+    private App app;
+    [SerializeField]
+    private int cost_for_grow = 1;
+    
     private AudioSource audioSource;
-    private VineManager vineManager;
-    private float vineGrowForBubble = 0.1f;
+    private float vineGrowForBubbles = 0.1f;
 
-    private SavingsManager savingsManager;
-
-    private ParticleSystem.Particle[] particles;
     // Start is called before the first frame update
     void Start()
     {
-        ps = GameObject.Find("Particle System").GetComponent<ParticleSystem>();
-        psm = ps.main;
-
-        savingsManager = GameObject.Find("reset").GetComponent<SavingsManager>();
+        app = GameObject.Find("App").GetComponent<App>();
 
         audioSource = this.gameObject.GetComponent<AudioSource>();
-
-        vineManager = GameObject.Find("vines").GetComponent<VineManager>();
-
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //transform.Rotate(0.0f, 0.0f, 0.4f, Space.Self);
-    }
+
+    // on click/touch call this
     private void OnMouseDown()
     {
         //animate button object
         transform.DOShakePosition(0.2f, new Vector3(0.005f, 0.005f, 0.005f), 20);
 
-        // remove one bubble
-        particles = new ParticleSystem.Particle[psm.maxParticles];
         // play sound
         audioSource.Play();
 
-        int pNum = ps.GetParticles(particles);
+        // Donate/ remove bubbles
+        DonateNBubbles(cost_for_grow);
         
-        Debug.Log(pNum);
-        //remove one particle
-        ps.SetParticles(particles[1..]);
-        // and safe new numBubbles
-        int numBubbles = PlayerPrefs.GetInt("numBubbles");
-        // if no bubbles, return
-        if (pNum <= 0 && numBubbles <= 0)
-        {
-            Debug.Log("no bubbles to donate");
-            return;
-        }
-            if (numBubbles > 0)
-        {
-            PlayerPrefs.SetInt("numBubbles", numBubbles-1);
-        }
-        // make vine grow
-        vineManager.GrowVines(vineGrowForBubble);
-        // destroy a bubble
-        pNum = ps.GetParticles(particles);
-        Debug.Log(pNum);
-        // update carbon display
-        savingsManager.UpdateCarbonDisplay();
-        // Donate something like plant a tree
-        Debug.Log("Donation Made");
     }
 
     public void HighlightButton()
     {
         transform.DOShakeRotation(0.4f, 0.005f, 20);
+    }
 
+    public void DonateNBubbles(int n)
+    {
+        // get number of bubbles
+        int numBubbles = PlayerPrefs.GetInt("numBubbles");
+        // if no bubbles, return
+        if (numBubbles < n)
+        {
+            Debug.Log("not enough bubbles to donate");
+            return;
+        }
+        else
+        {
+            app.bubbleController.RemoveNBubbles(n);
+            app.displayController.UpdateCarbonDisplay();
+            // make vine grow
+            app.vineManager.GrowVines(vineGrowForBubbles);
+        }
+        
     }
 }

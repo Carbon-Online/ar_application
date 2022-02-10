@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" ml="UnityEditor.XR.MagicLeap" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Main" style="position: absolute; bottom: 101px; top: 0; flex-grow: 0; flex-shrink: 1; flex-wrap: wrap; width: 100%; justify-content: space-around; align-items: center; visibility: visible; display: flex; left: -1px; font-size: 10%;">
+        <ui:VisualElement name="alert" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; background-color: rgba(255, 255, 255, 0.55); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; min-width: 30%; min-height: 20%; justify-content: center; align-items: center;">
+            <ui:Label text="Some message to be displayed here" display-tooltip-when-elided="true" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; flex-grow: 0; font-size: 30px;" />
+            <ui:Button text="Button" display-tooltip-when-elided="true" name="genericButton" style="border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; flex-grow: 0; font-size: 30px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="menu" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; background-color: rgba(255, 255, 255, 0.55); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; min-width: 30%; min-height: 20%; justify-content: center; align-items: center;">
+            <ui:Label text="Menu" display-tooltip-when-elided="true" name="Label" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; flex-grow: 0; font-size: 30px;" />
+            <ui:Button text="Reset" display-tooltip-when-elided="true" name="resetButton" style="border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; flex-grow: 0; font-size: 30px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="Footer" style="position: absolute; bottom: 0; top: 90%; width: auto; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; align-items: center; justify-content: space-around;">
+        <ui:Button text="|||" display-tooltip-when-elided="true" focusable="false" name="menuButton" style="flex-shrink: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px; font-size: 40px; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;" />
+    </ui:VisualElement>
+</ui:UXML>

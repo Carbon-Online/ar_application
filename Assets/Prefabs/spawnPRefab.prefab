@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1514855264}
   - component: {fileID: 1514855266}
   - component: {fileID: 1514855265}
+  - component: {fileID: 1812835689}
   m_Layer: 0
   m_Name: carbonDisplay
   m_TagString: Untagged
@@ -172,6 +173,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1514855266}
   m_maskType: 0
+--- !u!114 &1812835689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514855263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e571b0fa94912497487072b6bb70a95c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &470883046535675896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,6 +1029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2b6b71b2c134391ace3256bb9be5be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost_for_grow: 1
 --- !u!82 &7627998943356768918
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1176,6 +1190,7 @@ GameObject:
   - component: {fileID: 8185006092675261089}
   - component: {fileID: 8185006092675261094}
   - component: {fileID: 8185006092675261095}
+  - component: {fileID: 1099350717}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -5978,6 +5993,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1099350717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8185006092675261092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e817032aaf1747c3b68910dbb794786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8185006093092851010
 GameObject:
   m_ObjectHideFlags: 0

@@ -188,7 +188,7 @@ PrefabInstance:
     - target: {fileID: 8054327197730563432, guid: 8d264280e5a6f4e0f9ca6111e7493be3,
         type: 3}
       propertyPath: m_Name
-      value: AR_boilerplate
+      value: App
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d264280e5a6f4e0f9ca6111e7493be3, type: 3}
