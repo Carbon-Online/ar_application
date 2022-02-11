@@ -37,7 +37,7 @@ public class SavingsManager : MonoBehaviour
 
     }
 
-    private void EmitNBubbles(int n)
+    public void EmitNBubbles(int n)
     {
         bool success = app.bubbleController.AddNBubbles(n);
 

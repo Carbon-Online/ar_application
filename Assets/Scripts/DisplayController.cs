@@ -23,4 +23,8 @@ public class DisplayController : MonoBehaviour
                                 numBubbles.ToString() +
                                 " kilogramms \n of carbon.";
     }
+    public void DisplayMessage(string msg)
+    {
+        carbonDisplay.text = msg;
+    }
 }

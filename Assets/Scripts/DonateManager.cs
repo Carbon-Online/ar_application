@@ -10,7 +10,7 @@ public class DonateManager : MonoBehaviour
     private int cost_for_grow = 1;
     
     private AudioSource audioSource;
-    private float vineGrowForBubbles = 0.1f;
+    private float vineGrowForBubbles = 0.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +55,7 @@ public class DonateManager : MonoBehaviour
             app.bubbleController.RemoveNBubbles(n);
             app.displayController.UpdateCarbonDisplay();
             // make vine grow
-            app.vineManager.GrowVines(vineGrowForBubbles);
+            app.vineManager.GrowVines(n * vineGrowForBubbles);
         }
         
     }

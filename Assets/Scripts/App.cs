@@ -12,6 +12,8 @@ public class App : MonoBehaviour
     public VineManager vineManager;
     public UIController uiController;
     public DisplayController displayController;
+    public TourManager tourManager;
+    public TourUIController tourUIController;
 
     private ARTrackedImageManager imageTracker;
 
@@ -19,12 +21,18 @@ public class App : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        uiController = GameObject.Find("UI").GetComponent<UIController>();
-
         // get imageTracker
         imageTracker = GameObject.Find("AR Session Origin")
             .GetComponent<ARTrackedImageManager>();
 
+        imageTracker.trackedImagesChanged += OnChanged;
+
+        uiController = GameObject.Find("UI").GetComponent<UIController>();
+
+        tourManager = transform.GetComponent<TourManager>();
+
+        // start the guided tour
+        tourManager.StartTour();
         //if we are in the editor
         if (GameObject.Find("spawnPRefab"))
         {
@@ -33,19 +41,17 @@ public class App : MonoBehaviour
         }
     }
 
-
-    // subscribe to imageTracker state changed events
-    void OnEnable() => imageTracker.trackedImagesChanged += OnChanged;
-
     void OnDisable() => imageTracker.trackedImagesChanged -= OnChanged;
 
     void OnChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
-        InitializeApp();
-        foreach (var newImage in eventArgs.added)
-        {
+        if (GameObject.Find("spawnPRefab"))
             InitializeApp();
-        }
+
+        //foreach (var newImage in eventArgs.added)
+        //{
+        //    InitializeApp();
+        //}
 
         foreach (var removedImage in eventArgs.removed)
         {
@@ -70,6 +76,9 @@ public class App : MonoBehaviour
            .GetComponent<SavingsManager>();
 
         vineManager = GameObject.Find("vines").GetComponent<VineManager>();
+
+        tourUIController = GameObject.Find("tourUI")
+            .GetComponent<TourUIController>();
 
     }
 
