@@ -21,10 +21,14 @@ public class UIController : MonoBehaviour
     private Button alertButton;
 
     public ProgressBar dayBar;
+    public Label dayCounter;
+
+    public int dayCount;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        dayCount = 0;
         app = GameObject.Find("App").GetComponent<App>();
         // get root
         uiRoot = gameObject.GetComponent<UIDocument>()
@@ -40,7 +44,7 @@ public class UIController : MonoBehaviour
         alertButton = uiRoot.Q<Button>("alertButton");
 
         dayBar = uiRoot.Q<ProgressBar>("dayBar");
-
+        dayCounter = uiRoot.Q<Label>("dayCounter");
         // hide alert and menu
         alert.style.display = DisplayStyle.None;
         menu.style.display = DisplayStyle.None;
@@ -54,21 +58,9 @@ public class UIController : MonoBehaviour
         resetButton.RegisterCallback<ClickEvent>(
             ev =>
             {
-                // check if vines object exists
-                if (app.model_tracked)
-                {
-                    app.InitializeApp();
-                    app.vineManager.ResetVines();
-                    app.bubbleController.ResetBubbles();
-                }
-                else
-                {
-                    app.InitializeApp();
-                    // if no AR object spawned, reset the safed numbers
-                    PlayerPrefs.SetFloat("totalGrow", 0f);
-                    PlayerPrefs.SetInt("numBubbles", 0);
-                    app.tourManager.StartTour();
-                }
+                ToggleMenu();
+                app.tourManager.StartTour();
+                
             });
     }
 
@@ -95,7 +87,6 @@ public class UIController : MonoBehaviour
 
     public void Alert(string msg, string buttonText, Action callback)
     {
-        Start();
         // assign buttontext and message
         alertLabel.text = msg;
         alertButton.text = buttonText;
@@ -122,5 +113,11 @@ public class UIController : MonoBehaviour
             // wait till animation complete
         }
         return done;
+    }
+
+    public void IncrementDayCount()
+    {
+        dayCount++;
+        dayCounter.text = dayCount.ToString();
     }
 }

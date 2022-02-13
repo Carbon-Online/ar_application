@@ -24,8 +24,14 @@ public class VineManager : MonoBehaviour
     // Update is called once per frame
     public void GrowVines(float amount)
     {
+
         // set totalGrow in player prefs
         totalGrow = PlayerPrefs.GetFloat("totalGrow");
+        // clip to max grow
+        if(amount + totalGrow > 6)
+        {
+            amount = 6-totalGrow;
+        }
         PlayerPrefs.SetFloat("totalGrow", totalGrow + amount);
         // make them grow
         for (int i = 0; i < vines.Length; i++)

@@ -40,7 +40,7 @@ public class DonateManager : MonoBehaviour
         transform.DOShakeRotation(0.4f, 0.005f, 20);
     }
 
-    public void DonateNBubbles(int n)
+    public void DonateNBubbles(int n, System.Action callback = null)
     {
         // get number of bubbles
         int numBubbles = PlayerPrefs.GetInt("numBubbles");
@@ -57,6 +57,8 @@ public class DonateManager : MonoBehaviour
             // make vine grow
             app.vineManager.GrowVines(n * vineGrowForBubbles);
         }
-        
+        // call callback if given
+        callback?.Invoke();
+
     }
 }

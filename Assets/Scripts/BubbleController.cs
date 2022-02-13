@@ -63,12 +63,12 @@ public class BubbleController : MonoBehaviour
         
     }
 
-    public void RelocateBubbles()
-    {
-        int numBubbles = PlayerPrefs.GetInt("numBubbles");
-        RemoveNBubbles(numBubbles);
-        AddNBubbles(numBubbles);
-    }
+    //public void RelocateBubbles()
+    //{
+    //    int numBubbles = PlayerPrefs.GetInt("numBubbles");
+    //    RemoveNBubbles(numBubbles);
+    //    AddNBubbles(numBubbles);
+    //}
 
     // used to emit bubbles on augmentation start
     public void InitializeBubbles()
@@ -83,6 +83,9 @@ public class BubbleController : MonoBehaviour
         PlayerPrefs.SetInt("numBubbles", 0);
 
         // clear particle system
-        ps.Clear();
+        if (ps)
+        {
+            ps.Clear();
+        }
     }
 }

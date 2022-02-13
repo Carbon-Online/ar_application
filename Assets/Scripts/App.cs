@@ -25,14 +25,14 @@ public class App : MonoBehaviour
         imageTracker = GameObject.Find("AR Session Origin")
             .GetComponent<ARTrackedImageManager>();
 
-        imageTracker.trackedImagesChanged += OnChanged;
+        //imageTracker.trackedImagesChanged += OnChanged;
 
         uiController = GameObject.Find("UI").GetComponent<UIController>();
 
         tourManager = transform.GetComponent<TourManager>();
 
-        // start the guided tour
         tourManager.StartTour();
+
         //if we are in the editor
         if (GameObject.Find("spawnPRefab"))
         {
@@ -41,23 +41,21 @@ public class App : MonoBehaviour
         }
     }
 
-    void OnDisable() => imageTracker.trackedImagesChanged -= OnChanged;
-
-    void OnChanged(ARTrackedImagesChangedEventArgs eventArgs)
+    public void Update()
     {
-        if (GameObject.Find("spawnPRefab"))
+        if (GameObject.Find("tourUI") && !model_tracked)
             InitializeApp();
-
-        //foreach (var newImage in eventArgs.added)
-        //{
-        //    InitializeApp();
-        //}
-
-        foreach (var removedImage in eventArgs.removed)
-        {
-            model_tracked = false;
-        }
+        if (!GameObject.Find("tourUI") && model_tracked)
+            ModelLost();
     }
+
+    //void OnDisable() => imageTracker.trackedImagesChanged -= OnChanged;
+
+    //void OnChanged(ARTrackedImagesChangedEventArgs eventArgs)
+    //{
+    //    if (GameObject.Find("spawnPRefab"))
+    //        InitializeApp();
+    //}
 
     public void InitializeApp()
     {
@@ -79,7 +77,26 @@ public class App : MonoBehaviour
 
         tourUIController = GameObject.Find("tourUI")
             .GetComponent<TourUIController>();
+        // start the guided tour
+        tourManager.StartTour();
+    }
 
+    public void Reset()
+    {
+        PlayerPrefs.SetFloat("totalGrow", 0f);
+        PlayerPrefs.SetInt("numBubbles", 0);
+
+        if (model_tracked)
+        {
+            vineManager.ResetVines();
+            bubbleController.ResetBubbles();
+            displayController.UpdateCarbonDisplay();
+        }
+    }
+
+    private void ModelLost()
+    {
+        model_tracked = false;
     }
 
 }

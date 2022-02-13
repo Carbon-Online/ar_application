@@ -8,7 +8,6 @@ using DG.Tweening;
 
 public class TourUIController : MonoBehaviour
 {
-    private TMP_Text tourButton;
     private TourButtonController tourButtonController;
     private TMP_Text tourButtonText;
 
@@ -16,27 +15,24 @@ public class TourUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tourButton = GameObject.Find("tourButton").GetComponent<TMP_Text>();
-        tourButtonController = tourButton.GetComponent<TourButtonController>();
+        tourButtonController = GameObject.Find("tourButton")
+            .GetComponent<TourButtonController>();
     
         tourText = GameObject.Find("tourDisplay").GetComponent<TMP_Text>();
-        tourButton.DOColor(Color.clear, 0f);
         tourText.DOColor(Color.clear, 0f);
-
     }
 
-    public void UpdateTourUI(string msg, string buttonText, UnityAction callback)
+    public void UpdateTourUI(string msg, UnityAction callback)
     {
 
         tourButtonController.AssignOnClick(() => {
             Debug.Log("tourUIButton clicked.");
             callback();
-            tourButton.DOColor(Color.clear, 0.3f);
-            tourText.DOColor(Color.clear, 0.3f);
+            tourText.DOBlendableColor(Color.clear, 0f);
         });
-        tourButton.DOColor(Color.red, 0.3f);
-        tourText.DOColor(Color.red, 0.3f);
-        tourButton.text = buttonText;
+
+        tourText.DOColor(Color.black, 0.3f);
         tourText.text = msg;
+        Debug.Log("Tour UI updated and ready.");
     }
 }

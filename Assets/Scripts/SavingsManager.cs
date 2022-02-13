@@ -14,7 +14,6 @@ public class SavingsManager : MonoBehaviour
     void Start()
     {
         app = GameObject.Find("App").GetComponent<App>();
-        app.InitializeApp();
         audioSource = this.gameObject.GetComponent<AudioSource>(); 
     }
 
@@ -32,10 +31,6 @@ public class SavingsManager : MonoBehaviour
         EmitNBubbles(1);
     }
 
-    public void ResetSavings()
-    {
-
-    }
 
     public void EmitNBubbles(int n)
     {
