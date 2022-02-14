@@ -85,6 +85,7 @@ public class App : MonoBehaviour
     {
         PlayerPrefs.SetFloat("totalGrow", 0f);
         PlayerPrefs.SetInt("numBubbles", 0);
+        uiController.ResetDayBar();
 
         if (model_tracked)
         {

@@ -21,6 +21,11 @@ public class TourManager : MonoBehaviour
 
     public void StartTour()
     {
+
+        this.StopAllCoroutines();
+        if (app.model_tracked)
+            app.Reset();
+
         app.uiController.Alert("Start the CO2NLINE Tour.", "start",
             () => {
             if (!app.model_tracked)
@@ -30,8 +35,7 @@ public class TourManager : MonoBehaviour
                 }
                 else
                 {
-                	app.Reset();
-                    Debug.Log("starttour(): second case");
+                    app.Reset();
                     app.tourUIController.UpdateTourUI(
                         "For each daily saving, you get a bubble.",
                         DayOne
@@ -67,10 +71,9 @@ public class TourManager : MonoBehaviour
 
     IEnumerator DayTwoToTen()
     {
-        int[] tenDaysBubbleCount = new int[] { 1, 2, 1, 3, 2, 1, 4, 2, 1, 3 };
-        for (int i = 0; i < tenDaysBubbleCount.Length; i++)
+        for (int i = 0; i < 10; i++)
         {
-            yield return StartCoroutine(AnimateOneDay(1f, tenDaysBubbleCount[i]));
+            yield return StartCoroutine(AnimateOneDay(1f, 1));
         }
         yield return new WaitForSeconds(1f);
         app.tourUIController.UpdateTourUI(
@@ -84,10 +87,10 @@ public class TourManager : MonoBehaviour
 
     IEnumerator DayTenToHundred()
     {
-        yield return new WaitForSeconds(2);
-        for (int i = 0; i < 90; i++)
+        yield return new WaitForSeconds(1);
+        for (int i = 0; i < 30; i++)
         {
-            yield return StartCoroutine(AnimateOneDay(0.1f, 1)); //Mathf.RoundToInt(Random.Range(0,3))
+            yield return StartCoroutine(AnimateOneDay(0.1f, 1));
         }
         app.tourUIController.UpdateTourUI(
                         "You safed a lot, donate again.",
@@ -100,7 +103,7 @@ public class TourManager : MonoBehaviour
 
     IEnumerator FinalStep()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         app.tourUIController.UpdateTourUI(
             "Do you see the change of the digital artifact?",
             StartDayTenToHundred
@@ -109,7 +112,7 @@ public class TourManager : MonoBehaviour
 
     IEnumerator EndOfTour()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         app.tourUIController.UpdateTourUI(
             "This was the tour. Thank you for your interest.",
             StartTour

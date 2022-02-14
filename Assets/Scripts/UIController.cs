@@ -12,8 +12,6 @@ public class UIController : MonoBehaviour
 
     private VisualElement uiRoot;
 
-    private VisualElement menu;
-    private Button menuButton;
     private Button resetButton;
 
     private VisualElement alert;
@@ -35,8 +33,7 @@ public class UIController : MonoBehaviour
             .rootVisualElement;
 
         // get elements
-        menu = uiRoot.Q<VisualElement>("menu");
-        menuButton = uiRoot.Q<Button>("menuButton");
+ 
         resetButton = uiRoot.Q<Button>("resetButton");
 
         alert = uiRoot.Q<VisualElement>("alert");
@@ -47,43 +44,17 @@ public class UIController : MonoBehaviour
         dayCounter = uiRoot.Q<Label>("dayCounter");
         // hide alert and menu
         alert.style.display = DisplayStyle.None;
-        menu.style.display = DisplayStyle.None;
-
-
-        // callback for menu button
-        menuButton.RegisterCallback<ClickEvent>(
-            ev => ToggleMenu());
 
         // callback for reset button
         resetButton.RegisterCallback<ClickEvent>(
             ev =>
             {
-                ToggleMenu();
+                this.StopAllCoroutines();
                 app.tourManager.StartTour();
-                
             });
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    private void ToggleMenu()
-    {
-        if (menu.style.display == DisplayStyle.Flex)
-        {
-            DOTween.To(x => menu.style.opacity = x, 1, 0, .3f).OnComplete(
-                () => { menu.style.display = DisplayStyle.None; }
-                );
-        }
-        else
-        {
-            menu.style.display = DisplayStyle.Flex;
-            DOTween.To(x => menu.style.opacity = x, 0, 1, .3f);
-        }
-    }
 
     public void Alert(string msg, string buttonText, Action callback)
     {
@@ -118,6 +89,14 @@ public class UIController : MonoBehaviour
     public void IncrementDayCount()
     {
         dayCount++;
-        dayCounter.text = dayCount.ToString();
+        dayBar.title = "Day: " + dayCount.ToString();
+    }
+
+    public void ResetDayBar()
+    {
+        this.StopAllCoroutines();
+        dayCount = 0;
+        DOTween.To(x => dayBar.value = x, dayBar.value, 0, 1f);
+        dayBar.title = "Day: 0";
     }
 }
