@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GuidLow: 5167144382320382705
   m_GuidHigh: 13219019583011050687
-  m_ReferenceObjects: []
+  m_ReferenceObjects:
+  - m_GuidLow: 5024458756674770457
+    m_GuidHigh: 14008482344523574167
+    m_Name: artefactPaper
+    m_Entries:
+    - {fileID: -6831329414088302235, guid: 0bdf962ae01ec40e59ef5c3818ecfb4d, type: 3}
