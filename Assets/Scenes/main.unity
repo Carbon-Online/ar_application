@@ -130,21 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1615298272964463282, guid: 8d264280e5a6f4e0f9ca6111e7493be3,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1615298272964463283, guid: 8d264280e5a6f4e0f9ca6111e7493be3,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1615298272964463283, guid: 8d264280e5a6f4e0f9ca6111e7493be3,
-        type: 3}
-      propertyPath: m_MaxNumberOfMovingImages
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 6185294695882144700, guid: 8d264280e5a6f4e0f9ca6111e7493be3,
         type: 3}
       propertyPath: m_RootOrder
@@ -205,6 +190,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: App
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1615298272964463282, guid: 8d264280e5a6f4e0f9ca6111e7493be3, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d264280e5a6f4e0f9ca6111e7493be3, type: 3}
