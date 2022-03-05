@@ -3,7 +3,7 @@ This app is supposed to augment our real world artifact using AR technology.
 ## Contents
 - [Description](#description-pen)
 - [Project Structure](#project-structure-)
-- [Instalation](#installation-computer)
+- [Installation](#installation-computer)
 - [Usage](#usage)
 - [License](#license)
 ## Description :pen:
